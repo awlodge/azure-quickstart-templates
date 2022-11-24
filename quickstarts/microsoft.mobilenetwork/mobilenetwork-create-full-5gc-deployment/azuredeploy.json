@@ -4,8 +4,8 @@
   "metadata": {
     "_generator": {
       "name": "bicep",
-      "version": "0.10.61.36676",
-      "templateHash": "4302977634550725671"
+      "version": "0.12.40.16777",
+      "templateHash": "5850301759718654310"
     }
   },
   "parameters": {
@@ -226,6 +226,13 @@
       "defaultValue": "",
       "metadata": {
         "description": "The resource ID of the customLocation representing the ASE device where the packet core will be deployed. If this parameter is not specified then the 5G core will be created but will not be deployed to an ASE. [Collect custom location information](https://docs.microsoft.com/en-gb/azure/private-5g-core/collect-required-information-for-a-site#collect-custom-location-information) explains which value to specify here."
+      }
+    },
+    "packetCoreVersion": {
+      "type": "string",
+      "defaultValue": "",
+      "metadata": {
+        "description": "Override the default packet core version"
       }
     }
   },
@@ -459,6 +466,7 @@
         },
         "sku": "EvaluationPackage",
         "coreNetworkTechnology": "[parameters('coreNetworkTechnology')]",
+        "version": "[parameters('packetCoreVersion')]",
         "platform": {
           "type": "[parameters('platformType')]",
           "customLocation": "[if(empty(parameters('customLocation')), null(), createObject('id', parameters('customLocation')))]"
